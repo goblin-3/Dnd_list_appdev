@@ -66,6 +66,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         List("evocation"),
         List("conjuration"),
         List("necromancy"),
-        List("The_only_spell")
+        List("The_only_spell"),
+        List("Test")
     )
 }
