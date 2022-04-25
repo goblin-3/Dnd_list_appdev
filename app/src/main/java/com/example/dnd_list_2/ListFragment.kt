@@ -63,7 +63,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
     }
 
     private fun sampleList() = arrayListOf(
-        List("evocationn"),
+        List("evocation"),
         List("conjuration"),
         List("necromancy"),
         List("The_only_spell")
