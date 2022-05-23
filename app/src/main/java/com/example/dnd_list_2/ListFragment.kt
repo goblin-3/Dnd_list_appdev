@@ -70,7 +70,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
     }
 
     fun linkToWebsite() {
-        val url = "www.google.com"
+        val url = "http://dnd5e.wikidot.com"
         val browse = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browse)
     }
@@ -80,6 +80,5 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         List("conjuration"),
         List("necromancy"),
         List("The_only_spell"),
-        List("Test")
     )
 }
