@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.mnuClear -> clearAllItems()
                 R.id.mnuClearLatest -> clearLatestItem()
                 R.id.mnuReset -> resetItems()
+                R.id.mnuWebsite -> linkToWebsite()
             }
             true
         }
@@ -62,6 +63,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetItems() {
         listFragment.resetItems()
+    }
+
+    private fun linkToWebsite() {
+        listFragment.linkToWebsite()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

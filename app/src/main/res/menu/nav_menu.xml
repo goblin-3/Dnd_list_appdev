@@ -4,13 +4,15 @@
     <item
         android:id="@+id/mnuClear"
         android:title="Clear All Items" />
-
     <item
         android:id="@+id/mnuClearLatest"
         android:title="Clear Latest Item" />
     <item
         android:id="@+id/mnuReset"
         android:title="Reset to Default Items" />
+    <item
+        android:id="@+id/mnuWebsite"
+        android:title="Go to illegal Wikidot" />
 
 
 
