@@ -30,7 +30,6 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
 
         adapter = ListAdapter(List_example)
         binding.rvwList.adapter = adapter
-
         binding.rvwList.layoutManager = LinearLayoutManager(this.context)
 
         val sharedPref = activity?.getSharedPreferences(
@@ -42,13 +41,11 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             adapter.notifyItemInserted(List_example.size - 1)
 
 
-
             binding.edtList.text.clear()
             binding.edtList.clearFocus()
             main.hideKeyboard(it)
         }
         return binding.root
-
     }
 
     fun clearAllItems(){
@@ -72,7 +69,10 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
     fun linkToWebsite() {
         val url = "http://dnd5e.wikidot.com"
         val browse = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(browse)
+
+        //if (browse.resolveActivity(requireContext().packageManager) != null) { //dit moet er eigenlijk bij, maar werkt niet
+            startActivity(browse)
+        //}
     }
 
     private fun sampleList() = arrayListOf(

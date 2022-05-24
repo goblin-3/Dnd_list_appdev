@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupMenuDrawer() {
         menuBarToggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.menu_open, R.string.menu_close)
         binding.drawerLayout.addDrawerListener(menuBarToggle)
-        // it's now ready to be used
         menuBarToggle.syncState()
 
         // when the menu drawer opens, the toggle button moves to a "back" button and it will close again.

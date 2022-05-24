@@ -20,10 +20,8 @@ class ListAdapter (val items:List<com.example.dnd_list_2.model.List>) : Recycler
         val currentListItem = items[position]
         holder.itemView.apply {
             findViewById<TextView>(R.id.txtListTitle).text = currentListItem.title
-
-
         }
     }
 
-    override fun getItemCount(): Int =items.size
+    override fun getItemCount(): Int = items.size
 }
