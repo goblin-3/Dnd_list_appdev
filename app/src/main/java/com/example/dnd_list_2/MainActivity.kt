@@ -9,21 +9,19 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dnd_list_2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var menuBarToggle: ActionBarDrawerToggle
+    private lateinit var newRecyclerview : RecyclerView
     private var listFragment = ListFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-
-
-
 
         setupTodoListFragment()
         setupMenuDrawer()
@@ -32,7 +30,18 @@ class MainActivity : AppCompatActivity() {
         val fragment1 = ListFragment()
         val fragment2 = ListFragment2()
 
-       //  binding.setOnItem_listClickListener{switchTo(fragment2)}     !!!!!!! als deze lijn geen errors zou geven zou het moeten werken denk ik
+
+        newRecyclerview = findViewById(R.id.rvwList)
+        var adapter = ListAdapter(arrayListOf())
+        newRecyclerview.adapter = adapter
+        adapter.setOnItemClickListener(object : ListAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                switchTo(fragment2)
+            }
+
+        })
+
+        //binding.setOnItem_listClickListener{switchTo(fragment2)}     //! als deze lijn geen errors zou geven zou het moeten werken denk ik
         switchTo(fragment1)
 
 
