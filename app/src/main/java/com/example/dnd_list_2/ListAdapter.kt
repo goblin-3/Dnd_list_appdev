@@ -1,5 +1,6 @@
 package com.example.dnd_list_2
 
+import android.icu.text.Transliterator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,5 +24,20 @@ class ListAdapter (val items:List<com.example.dnd_list_2.model.List>) : Recycler
         }
     }
 
+
     override fun getItemCount(): Int = items.size
+
+    fun getItem(position: Int): Any{
+        return items[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(position)
+    }
+    /*
+    override fun getView(position: Int, convertView: View?,parent: ViewGroup):
+            View{
+        val rowView = inflater.inflate(R.layout.list_item_items, parent, false)
+        return rowView
+    }*/
 }

@@ -66,14 +66,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         adapter.notifyDataSetChanged()
     }
 
-    fun linkToWebsite() {
-        val url = "http://dnd5e.wikidot.com"
-        val browse = Intent(Intent.ACTION_VIEW, Uri.parse(url))
 
-        //if (browse.resolveActivity(requireContext().packageManager) != null) { //dit moet er eigenlijk bij, maar werkt niet
-            startActivity(browse)
-        //}
-    }
 
     private fun sampleList() = arrayListOf(
         List("evocation"),
