@@ -7,8 +7,8 @@ import android.hardware.SensorManager
 
 abstract class Sensable (protected val sensorManager: SensorManager, private val onSense: (SensorResult) -> Unit) :
     SensorEventListener {
-    abstract val type: Int
 
+    abstract val type: Int
 
    // fun trigger(result: SensorResult) = onSense(result)
 
@@ -24,7 +24,7 @@ abstract class Sensable (protected val sensorManager: SensorManager, private val
         onSense(SensorResult.fromEvent(event))
     }
 
-     fun isSensable(): Boolean = sensorManager!=null
+    fun isSensable(): Boolean = sensorManager != null
 
     fun pause() =
         sensorManager.unregisterListener(this)
@@ -34,8 +34,8 @@ abstract class Sensable (protected val sensorManager: SensorManager, private val
     val sensor: Sensor?
         get() = sensorManager.getDefaultSensor(type)
 }
-    data class SensorResult(val x:Float){
 
+    data class SensorResult(val x:Float){
         companion object {
             fun fromEvent(event: SensorEvent): SensorResult {
                 return if(event.values.size > 1) SensorResult(event.values[0]) else SensorResult(event.values[0])
