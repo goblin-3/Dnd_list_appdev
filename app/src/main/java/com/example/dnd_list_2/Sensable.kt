@@ -35,10 +35,10 @@ abstract class Sensable (protected val sensorManager: SensorManager, private val
         get() = sensorManager.getDefaultSensor(type)
 }
 
-    data class SensorResult(val x:Float){
-        companion object {
-            fun fromEvent(event: SensorEvent): SensorResult {
-                return if(event.values.size > 1) SensorResult(event.values[0]) else SensorResult(event.values[0])
-            }
+data class SensorResult(val x: Float, val y: Float = 0F, val z: Float = 0F) {
+    companion object {
+        fun fromEvent(event: SensorEvent): SensorResult {
+            return if(event.values.size > 1) SensorResult(event.values[0], event.values[1], event.values[2]) else SensorResult(event.values[0])
         }
     }
+}

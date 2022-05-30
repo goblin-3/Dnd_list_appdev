@@ -46,8 +46,8 @@
 
     <TextView
         android:id="@+id/txt_weather"
-        android:layout_width="205dp"
-        android:layout_height="81dp"
+        android:layout_width="273dp"
+        android:layout_height="112dp"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
