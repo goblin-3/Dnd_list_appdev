@@ -1,6 +1,5 @@
 package com.example.dnd_list_2
 
-import android.icu.text.Transliterator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
