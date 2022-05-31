@@ -28,6 +28,7 @@ abstract class Sensable (protected val sensorManager: SensorManager, private val
 
     fun pause() =
         sensorManager.unregisterListener(this)
+
     fun resume() =
         sense()
 

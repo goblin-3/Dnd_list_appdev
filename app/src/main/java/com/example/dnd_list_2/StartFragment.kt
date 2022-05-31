@@ -1,6 +1,5 @@
 package com.example.dnd_list_2
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.dnd_list_2.databinding.FragmentStartBinding
 import android.content.Context
 import android.hardware.SensorManager
-import com.example.dnd_list_2.StartFragment as StartFragment1
 
 class StartFragment : Fragment(R.layout.fragment_start) {
 
@@ -20,7 +18,6 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         get() = view?.getContext()?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
 
-    //
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,12 +50,11 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         tryToActivateSensor(TemperatureSensor(sensorManager) {
 
             if (Integer.parseInt( it.toString() )<= 18 ) {
-                binding.txtWeather.text = "Too cold for being outside, Just the excuse you needed to play Dnd indoors"
+                binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
             } else {
-                binding.txtWeather.text = "Just the right temperature too play Dnd outdoors"        }
+                binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"        }
             binding.txtCurrentTemp.text ="${it.toString()}°c "
         })
-
     }
 
     override fun onPause() {
