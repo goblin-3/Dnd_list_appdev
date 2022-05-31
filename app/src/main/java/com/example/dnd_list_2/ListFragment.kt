@@ -29,7 +29,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         binding.rvwList.layoutManager = LinearLayoutManager(this.context)
         binding.rvwList.adapter = adapter
 
-        val fragment2 = ListFragment2()
+      //  val fragment2 = ListFragment2()
 
      /*   adapter.setOnItemClickListener(object : ListAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {

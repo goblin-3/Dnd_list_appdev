@@ -46,10 +46,10 @@ class ListFragment2:Fragment(R.layout.fragment_list2) {
     }
 
     private fun sampleList2() = arrayListOf(
-        List("blabla"),
-        List("fireball"),
+        List("Axe"),
+        List("GreatSword"),
         List("Wand of necroDancy"),
-        List("The_only_spell"),
+        List("40 ft Rope"),
     )
 
 }
