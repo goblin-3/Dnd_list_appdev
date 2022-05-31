@@ -30,7 +30,7 @@ class StartFragment : Fragment(R.layout.fragment_start) {
 
         val firstFragment = ListFragment()
 
-        activateSensors()
+        binding.btnDndTime.setOnClickListener(this::activateSensors)
 
         binding.btnStart.setOnClickListener{
             (activity as MainActivity).switchTo(firstFragment)
@@ -45,24 +45,25 @@ class StartFragment : Fragment(R.layout.fragment_start) {
             binding.txtWeather.text = ("Whoops, no ${sensor::class.simpleName} sensor present?")
         return
         }
-        sensor.also { it.sense()
+        sensor.also {
+            it.sense()
             sensors.add(it)
-            if (it.toString() <= 18.toString()) {
+            /*if (it.toString() <= 18.toString()) {
                 binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
             } else {
                 binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"        }
-            binding.txtCurrentTemp.text ="${it.toString()} °C"
-        }
+            binding.txtCurrentTemp.text ="${it.type} °C"
+        */}
     }
 
-    private fun activateSensors() {
+    private fun activateSensors(view: View) {
         tryToActivateSensor(TemperatureSensor((activity as MainActivity).sensorManager) {
 
-            /*if (Integer.parseInt( it.toString() )<= 18 ) {
+            if ( it.x <= 18.0 ) {
                 binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
             } else {
                 binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"        }
-            binding.txtCurrentTemp.text ="${it.toString()}°c "*/
+            binding.txtCurrentTemp.text ="${it.x}°c "
         })
     }
 
