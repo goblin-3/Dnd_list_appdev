@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragmentStart = StartFragment()
-
-        //binding.setOnItem_listClickListener{switchTo(fragment2)}     //! als deze lijn geen errors zou geven zou het moeten werken denk ik
-
         switchTo(fragmentStart)
     }
 

@@ -24,7 +24,7 @@ class ListFragment2:Fragment(R.layout.fragment_list2) {
         binding = FragmentList2Binding.inflate(layoutInflater)
         main = activity as MainActivity
 
-
+        adapter = ListAdapter(List2_example)
         binding.rvwList.adapter = adapter
         binding.rvwList.layoutManager = LinearLayoutManager(this.context)
 
