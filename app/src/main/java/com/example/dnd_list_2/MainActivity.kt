@@ -1,6 +1,8 @@
 package com.example.dnd_list_2
 
+import android.content.Context
 import android.content.Intent
+import android.hardware.SensorManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +18,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var menuBarToggle: ActionBarDrawerToggle
     private var listFragment = ListFragment()
+
+    val sensorManager: SensorManager
+        get() = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

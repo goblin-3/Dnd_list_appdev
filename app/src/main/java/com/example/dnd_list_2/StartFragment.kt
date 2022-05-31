@@ -8,14 +8,17 @@ import androidx.fragment.app.Fragment
 import com.example.dnd_list_2.databinding.FragmentStartBinding
 import android.content.Context
 import android.hardware.SensorManager
+import androidx.appcompat.app.AppCompatActivity
 
 class StartFragment : Fragment(R.layout.fragment_start) {
 
     lateinit var binding: FragmentStartBinding
     private var listFragment = ListFragment()
     val sensors: MutableList<Sensable> = mutableListOf()
-    val sensorManager: SensorManager
-        get() = view?.getContext()?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    /*val sensorManager: SensorManager
+        get() = getSystemService(Context.SENSOR_SERVICE) as SensorManager*/
+    /*val sensorManager: SensorManager
+        get() = view?.getContext()?.getSystemService(Context.SENSOR_SERVICE) as SensorManager*/
 
 
     override fun onCreateView(
@@ -27,7 +30,7 @@ class StartFragment : Fragment(R.layout.fragment_start) {
 
         val firstFragment = ListFragment()
 
-        this::activateSensors
+        activateSensors()
 
         binding.btnStart.setOnClickListener{
             (activity as MainActivity).switchTo(firstFragment)
@@ -43,17 +46,23 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         return
         }
         sensor.also { it.sense()
-            sensors.add(it)}
-    }
-
-    private fun activateSensors(view: View) {
-        tryToActivateSensor(TemperatureSensor(sensorManager) {
-
-            if (Integer.parseInt( it.toString() )<= 18 ) {
+            sensors.add(it)
+            if (it.toString() <= 18.toString()) {
                 binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
             } else {
                 binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"        }
-            binding.txtCurrentTemp.text ="${it.toString()}°c "
+            binding.txtCurrentTemp.text ="${it.toString()} °C"
+        }
+    }
+
+    private fun activateSensors() {
+        tryToActivateSensor(TemperatureSensor((activity as MainActivity).sensorManager) {
+
+            /*if (Integer.parseInt( it.toString() )<= 18 ) {
+                binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
+            } else {
+                binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"        }
+            binding.txtCurrentTemp.text ="${it.toString()}°c "*/
         })
     }
 
