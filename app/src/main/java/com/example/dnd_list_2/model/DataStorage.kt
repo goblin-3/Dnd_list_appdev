@@ -6,38 +6,47 @@ import com.google.gson.Gson
 class DataStorage {
 
     val gson = Gson()
-    var DndList = mutableListOf<List>()
 
-    private fun saveList(list: List, sharedPreferences: SharedPreferences) {
-        val ToSaveList = gson.toJson(list)
+    private fun saveFirstList(list: String, sharedPreferences: SharedPreferences) {
+        val toSaveFirstList = gson.toJson(list)
         val editor = sharedPreferences.edit()
         editor.apply{
-            putString(list.title, ToSaveList)
+            putString("FirstListName", toSaveFirstList)
         }.apply()
     }
 
-    private fun saveList(list: String, sharedPreferences: SharedPreferences){
-        val editor = sharedPreferences.edit()
-        editor.apply{
-            putString("Listname", list)
+    private fun saveSecondList(list: String, sharedPreferences: SharedPreferences){
+        val toSaveSecondList = gson.toJson(list)
+        val editors = sharedPreferences.edit()
+        editors.apply{
+            putString("SecondListName", toSaveSecondList)
         }.apply()
     }
 
-    fun save(sharedPreferences: SharedPreferences, sharedPreferenceslist : SharedPreferences, DndList : MutableList<List>){
+    fun saveFirst(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<String>){
         var tempList = ""
         DndList.forEach() { List ->
-            saveList(List, sharedPreferences)
-            tempList = tempList + List.title + "/"
+            saveFirstList(List, sharedPreferences)
+            tempList = tempList + String + "-"
         }
-        saveList(tempList, sharedPreferenceslist)
+        saveFirstList(tempList, sharedPreferencesList)
+    }
+
+    fun saveSecond(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<String>){
+        var tempList = ""
+        DndList.forEach() { List ->
+            saveSecondList(List, sharedPreferences)
+            tempList = tempList + String + "-"
+        }
+        saveSecondList(tempList, sharedPreferencesList)
     }
 
 
-    fun getData(sharedPreferences: SharedPreferences,  sharedPreferencesList : SharedPreferences, DndList : MutableList<List>){
-        if(sharedPreferencesList.contains("Listname")) {
-            val savedList = sharedPreferencesList.getString("Listname", null)
-            var TitleString: kotlin.collections.List<String> = savedList!!.split("/")
-            TitleString.forEach() {
+    fun getDataFirstList(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<List>){
+        if(sharedPreferencesList.contains("FirstListName")) {
+            val savedList = sharedPreferencesList.getString("FirstListName", null)
+            var titleString: kotlin.collections.List<String> = savedList!!.split("-")
+            titleString.forEach() {
                 if (!(it == "")&&sharedPreferences.contains(it)) {
                     val savedString = sharedPreferences.getString(it, null)
                     val title = gson.fromJson(savedString, List::class.java)
@@ -46,7 +55,22 @@ class DataStorage {
             }
         }
     }
-    fun delete(sharedPreferences: SharedPreferences,  sharedPreferencesList : SharedPreferences){
+
+    fun getDataSecondList(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<List>){
+        if(sharedPreferencesList.contains("SecondListName")) {
+            val savedList = sharedPreferencesList.getString("SecondListName", null)
+            var titleString: kotlin.collections.List<String> = savedList!!.split("-")
+            titleString.forEach() {
+                if (!(it == "")&&sharedPreferences.contains(it)) {
+                    val savedString = sharedPreferences.getString(it, null)
+                    val title = gson.fromJson(savedString, List::class.java)
+                    DndList.add(title)
+                }
+            }
+        }
+    }
+
+    fun deleteAll(sharedPreferences : SharedPreferences, sharedPreferencesList : SharedPreferences){
         val editor = sharedPreferences.edit()
         editor.apply{
             editor.clear()

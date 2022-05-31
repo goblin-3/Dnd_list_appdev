@@ -1,6 +1,5 @@
 package com.example.dnd_list_2
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,14 +28,13 @@ class ListFragment2:Fragment(R.layout.fragment_list2) {
         binding.rvwList.adapter = adapter
         binding.rvwList.layoutManager = LinearLayoutManager(this.context)
 
-    //    val sharedPref = activity?.getSharedPreferences(
-      //      "Dnd_list_appdev", Context.MODE_PRIVATE)
+        /*val sharedPref = activity?.getSharedPreferences(
+            "Dnd_list_appdev", Context.MODE_PRIVATE)*/
 
         binding.btnAddList.setOnClickListener {
             val newListTitle = binding.edtList.text.toString()
             List2_example.add(List(newListTitle))
             adapter.notifyItemInserted(List2_example.size - 1)
-
 
             binding.edtList.text.clear()
             binding.edtList.clearFocus()
@@ -51,5 +49,4 @@ class ListFragment2:Fragment(R.layout.fragment_list2) {
         List("Wand of necroDancy"),
         List("40 ft Rope"),
     )
-
 }

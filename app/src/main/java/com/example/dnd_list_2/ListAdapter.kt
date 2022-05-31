@@ -8,24 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ListAdapter (val items:List<com.example.dnd_list_2.model.List>) : RecyclerView.Adapter<ListAdapter.ListViewHolder>(){
 
- //   private lateinit var mListener : onItemClickListener
-
-  //  interface onItemClickListener {
-    //    fun onItemClick(position : Int)
-    //}
-/*
-    fun setOnItemClickListener(listener: onItemClickListener) {
-        mListener = listener
-    }
-*/
-  /*  inner class ListViewHolder(currentItemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(currentItemView) {
-        init {
-            currentItemView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-            }
-        }
-    }
-*/
     inner class ListViewHolder(currentItemView: View): RecyclerView.ViewHolder(currentItemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -40,20 +22,5 @@ class ListAdapter (val items:List<com.example.dnd_list_2.model.List>) : Recycler
         }
     }
 
-
     override fun getItemCount(): Int = items.size
-
-    /*fun getItem(position: Int): Any{
-        return items[position]
-    }
-
-    override fun getItemId(position: Int): Long {
-        return super.getItemId(position)
-    }*/
-    /*
-    override fun getView(position: Int, convertView: View?,parent: ViewGroup):
-            View{
-        val rowView = inflater.inflate(R.layout.list_item_items, parent, false)
-        return rowView
-    }*/
 }

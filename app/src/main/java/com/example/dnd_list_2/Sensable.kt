@@ -10,8 +10,6 @@ abstract class Sensable (protected val sensorManager: SensorManager, private val
 
     abstract val type: Int
 
-   // fun trigger(result: SensorResult) = onSense(result)
-
     fun sense() {
         if(!isSensable()) return
         sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI)
