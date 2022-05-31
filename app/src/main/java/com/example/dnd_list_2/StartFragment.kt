@@ -29,11 +29,16 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         binding = FragmentStartBinding.inflate(layoutInflater)
 
         val firstFragment = ListFragment()
+        val secondFragment = ListFragment2()
 
         binding.btnDndTime.setOnClickListener(this::activateSensors)
 
         binding.btnStart.setOnClickListener{
             (activity as MainActivity).switchTo(firstFragment)
+            onPause()
+        }
+        binding.btnStart2.setOnClickListener{
+            (activity as MainActivity).switchTo(secondFragment)
             onPause()
         }
 

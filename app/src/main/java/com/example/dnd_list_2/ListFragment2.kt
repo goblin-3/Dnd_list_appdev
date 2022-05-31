@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dnd_list_2.databinding.FragmentList2Binding
+import com.example.dnd_list_2.model.List
 
 class ListFragment2:Fragment(R.layout.fragment_list2) {
 
@@ -33,7 +34,7 @@ class ListFragment2:Fragment(R.layout.fragment_list2) {
 
         binding.btnAddList.setOnClickListener {
             val newListTitle = binding.edtList.text.toString()
-            List2_example.add(com.example.dnd_list_2.model.List(newListTitle))
+            List2_example.add(List(newListTitle))
             adapter.notifyItemInserted(List2_example.size - 1)
 
 
@@ -45,10 +46,10 @@ class ListFragment2:Fragment(R.layout.fragment_list2) {
     }
 
     private fun sampleList2() = arrayListOf(
-        com.example.dnd_list_2.model.List("blabla"),
-        com.example.dnd_list_2.model.List("fireball"),
-        com.example.dnd_list_2.model.List("Wand of necroDancy"),
-        com.example.dnd_list_2.model.List("The_only_spell"),
+        List("blabla"),
+        List("fireball"),
+        List("Wand of necroDancy"),
+        List("The_only_spell"),
     )
 
 }

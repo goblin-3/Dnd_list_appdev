@@ -31,13 +31,13 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
 
         val fragment2 = ListFragment2()
 
-        adapter.setOnItemClickListener(object : ListAdapter.onItemClickListener{
+     /*   adapter.setOnItemClickListener(object : ListAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 if (position == 1) {
                     (activity as MainActivity).switchTo(fragment2)
                 }
             }
-        })
+        })*/
 
 
         /*val sharedPref = activity?.getSharedPreferences(
