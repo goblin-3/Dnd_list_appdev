@@ -53,7 +53,7 @@ class StartFragment : Fragment(R.layout.fragment_start) {
                 binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
             } else {
                 binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"        }
-            binding.txtCurrentTemp.text ="${it.x}°c "
+            binding.txtCurrentTemp.text = "${it.x} °C"
         })
     }
 
