@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.dnd_list_2.databinding.FragmentStartBinding
 
+
+
 class StartFragment : Fragment(R.layout.fragment_start) {
 
     lateinit var binding: FragmentStartBinding
     val sensors: MutableList<Sensable> = mutableListOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,16 +23,17 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         binding = FragmentStartBinding.inflate(layoutInflater)
 
         val firstFragment = ListFragment()
-        val secondFragment = ListFragment2()
 
         binding.btnDndTime.setOnClickListener(this::activateSensors)
 
         binding.btnStart.setOnClickListener{
             (activity as MainActivity).switchTo(firstFragment)
+            currentFrame = 1
             onPause()
         }
         binding.btnStart2.setOnClickListener{
-            (activity as MainActivity).switchTo(secondFragment)
+            (activity as MainActivity).switchTo(firstFragment)
+            currentFrame = 2
             onPause()
         }
 

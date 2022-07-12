@@ -13,7 +13,7 @@ import com.example.dnd_list_2.model.List
 class ListFragment: Fragment(R.layout.fragment_list1) {
 
     private lateinit var binding: FragmentList1Binding
-    private val listExample = sampleList()
+    var listExample = sampleList()
     private lateinit var main: MainActivity
     private lateinit var adapter: ListAdapter
 
@@ -24,6 +24,13 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
     ): View? {
         binding = FragmentList1Binding.inflate(layoutInflater)
         main = activity as MainActivity
+
+        if (currentFrame ==1){
+            listExample = sampleList()
+        }
+        else{
+            listExample = sampleList2()
+        }
 
         adapter = ListAdapter(listExample)
         binding.rvwList.layoutManager = LinearLayoutManager(this.context)
@@ -67,5 +74,11 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         List("Conjuration"),
         List("Necromancy"),
         List("The only spell"),
+    )
+    private fun sampleList2() = arrayListOf(
+        List("Axe"),
+        List("GreatSword"),
+        List("Wand of necroDancy"),
+        List("40 ft Rope"),
     )
 }
