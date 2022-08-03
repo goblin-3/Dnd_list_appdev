@@ -1,5 +1,7 @@
 package com.example.dnd_list_2
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dnd_list_2.databinding.FragmentList1Binding
+import com.example.dnd_list_2.model.DataStorage
 import com.example.dnd_list_2.model.List
 
 
@@ -16,6 +19,9 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
     var listExample = sampleList()
     private lateinit var main: MainActivity
     private lateinit var adapter: ListAdapter
+    lateinit var list1: SharedPreferences
+    lateinit var list2: SharedPreferences
+    val memory : DataStorage = DataStorage()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,10 +31,16 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         binding = FragmentList1Binding.inflate(layoutInflater)
         main = activity as MainActivity
 
+
+        val sharedPref = activity?.getSharedPreferences(
+            "Dnd_list_appdev", Context.MODE_PRIVATE)!!
+
         if (currentFrame ==1){
             listExample = sampleList()
+   //         memory.getDataFirstList(sharedPref,list1,listExample)
         }
         else{
+     //       memory.getDataSecondList(sharedPref,list2,listExample)
             listExample = sampleList2()
         }
 
@@ -36,8 +48,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         binding.rvwList.layoutManager = LinearLayoutManager(this.context)
         binding.rvwList.adapter = adapter
 
-        /*val sharedPref = activity?.getSharedPreferences(
-            "Dnd_list_appdev", Context.MODE_PRIVATE)*/
+
 
         binding.btnAddList.setOnClickListener {
             val newListTitle = binding.edtList.text.toString()

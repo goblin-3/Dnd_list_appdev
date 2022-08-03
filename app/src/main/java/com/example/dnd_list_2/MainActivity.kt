@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
     }
 
     private fun clearAllItems() {
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun returnHome() {
         switchTo(fragmentStart)
+
     }
 
     private fun linkToWebsite() {

@@ -32,9 +32,9 @@ class DataStorage {
         saveFirstList(tempList, sharedPreferencesList)
     }
 
-    fun saveSecond(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<String>){
+    fun saveSecond(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList2 : MutableList<String>){
         var tempList = ""
-        DndList.forEach() { List ->
+        DndList2.forEach() { List ->
             saveSecondList(List, sharedPreferences)
             tempList = tempList + String + "-"
         }
