@@ -16,7 +16,7 @@ import com.example.dnd_list_2.model.List
 class ListFragment: Fragment(R.layout.fragment_list1) {
 
     private lateinit var binding: FragmentList1Binding
-    var listExample = sampleList()
+    var listExample = spellList()
     private lateinit var main: MainActivity
     private lateinit var adapter: ListAdapter
     lateinit var list1: SharedPreferences
@@ -36,19 +36,20 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             "Dnd_list_appdev", Context.MODE_PRIVATE)!!
 
         if (currentFrame ==1){
-            listExample = sampleList()
+            listExample = spellList()
    //         memory.getDataFirstList(sharedPref,list1,listExample)
         }
         else{
      //       memory.getDataSecondList(sharedPref,list2,listExample)
-            listExample = sampleList2()
+            listExample = itemList()
         }
 
         adapter = ListAdapter(listExample)
         binding.rvwList.layoutManager = LinearLayoutManager(this.context)
         binding.rvwList.adapter = adapter
 
-
+        /*val sharedPref = activity?.getSharedPreferences(
+            "Dnd_list_appdev", Context.MODE_PRIVATE)*/
 
         binding.btnAddList.setOnClickListener {
             val newListTitle = binding.edtList.text.toString()
@@ -62,31 +63,31 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         return binding.root
     }
 
-    fun clearAllItems(){
+    fun clearAllItems() {
         listExample.clear()
         adapter.notifyDataSetChanged()
     }
 
-    fun clearLatestItem(){
-        if(listExample.size>=1){
-            listExample.removeAt(listExample.size-1)
-            adapter.notifyItemRemoved(listExample.size-1)
+    fun clearLatestItem() {
+        if (listExample.size >= 1) {
+            listExample.removeAt(listExample.size - 1)
+            adapter.notifyItemRemoved(listExample.size - 1)
         }
     }
 
-    fun resetItems(){
+    fun resetItems() {
         listExample.clear()
-        listExample.addAll(sampleList())
+        listExample.addAll(spellList())
         adapter.notifyDataSetChanged()
     }
 
-    private fun sampleList() = arrayListOf(
+    private fun spellList() = arrayListOf(
         List("Evocation"),
         List("Conjuration"),
         List("Necromancy"),
         List("The only spell"),
     )
-    private fun sampleList2() = arrayListOf(
+    private fun itemList() = arrayListOf(
         List("Axe"),
         List("GreatSword"),
         List("Wand of necroDancy"),

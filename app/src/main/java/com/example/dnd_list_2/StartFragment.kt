@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.dnd_list_2.databinding.FragmentStartBinding
 
 
-
 class StartFragment : Fragment(R.layout.fragment_start) {
 
     lateinit var binding: FragmentStartBinding
@@ -22,17 +21,17 @@ class StartFragment : Fragment(R.layout.fragment_start) {
     ): View? {
         binding = FragmentStartBinding.inflate(layoutInflater)
 
-        val firstFragment = ListFragment()
+        val listFragment = ListFragment()
 
         binding.btnDndTime.setOnClickListener(this::activateSensors)
 
-        binding.btnStart.setOnClickListener{
-            (activity as MainActivity).switchTo(firstFragment)
+        binding.btnSpell.setOnClickListener{
+            (activity as MainActivity).switchTo(listFragment)
             currentFrame = 1
             onPause()
         }
-        binding.btnStart2.setOnClickListener{
-            (activity as MainActivity).switchTo(firstFragment)
+        binding.btnItem.setOnClickListener{
+            (activity as MainActivity).switchTo(listFragment)
             currentFrame = 2
             onPause()
         }
@@ -43,20 +42,22 @@ class StartFragment : Fragment(R.layout.fragment_start) {
     private fun tryToActivateSensor(sensor: Sensable) {
         if (!sensor.isSensable()) {
             binding.txtWeather.text = ("Whoops, no ${sensor::class.simpleName} sensor present?")
-        return
+            return
         }
         sensor.also {
             it.sense()
             sensors.add(it)
-            }
+        }
     }
 
     private fun activateSensors(view: View) {
         tryToActivateSensor(TemperatureSensor((activity as MainActivity).sensorManager) {
-            if ( it.x <= 18.0 ) {
-                binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
+            if (it.x <= 18.0) {
+                binding.txtWeather.text =
+                    "Too cold for being outside, just the excuse you needed to play Dnd indoors"
             } else {
-                binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"        }
+                binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"
+            }
             binding.txtCurrentTemp.text = "${it.x} °C"
         })
     }

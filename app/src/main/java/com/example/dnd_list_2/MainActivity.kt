@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import com.example.dnd_list_2.databinding.ActivityMainBinding
+
 var currentFrame = 0
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     val sensorManager: SensorManager
         get() = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,8 +34,6 @@ class MainActivity : AppCompatActivity() {
         setupMenuDrawer()
 
         setContentView(binding.root)
-
-
         switchTo(fragmentStart)
     }
 
@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout,
             R.string.menu_open,
             R.string.menu_close
-
         )
+
         binding.drawerLayout.addDrawerListener(menuBarToggle)
         menuBarToggle.syncState()
 
@@ -67,11 +67,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.mnuClearLatest -> clearLatestItem()
                 R.id.mnuReset -> resetItems()
                 R.id.mnuWebsite -> linkToWebsite()
-                R.id.bckhome ->  returnHome()
             }
+            binding.drawerLayout.closeDrawers()
             true
         }
-
     }
 
     private fun clearAllItems() {
@@ -84,10 +83,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetItems() {
         listFragment.resetItems()
-    }
-    private fun returnHome() {
-        switchTo(fragmentStart)
-
     }
 
     private fun linkToWebsite() {

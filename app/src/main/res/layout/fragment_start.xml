@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btn_start2"
+        android:id="@+id/btn_item"
         android:layout_width="178dp"
         android:layout_height="67dp"
         android:text="Item List"
@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.948" />
 
     <Button
-        android:id="@+id/btn_start"
+        android:id="@+id/btn_spell"
         android:layout_width="178dp"
         android:layout_height="67dp"
         android:text="Spell List"
