@@ -1,70 +1,97 @@
 package com.example.dnd_list_2.model
 
+import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlin.collections.List
 
 class DataStorage {
 
-    val gson = Gson()
+    // verplaatst naar ListFragment om makkelijker aan de code te geraken, vond effe nie hoe ge
+    // functies uit andere .kt bestanden gebruikt
 
-    private fun saveFirstList(list: String, sharedPreferences: SharedPreferences) {
-        val toSaveFirstList = gson.toJson(list)
+    fun saveListInPreferences(context: Context, list: List<com.example.dnd_list_2.model.List>, key: String) {
+        val gson = Gson()
+        val jsonString = gson.toJson(list)
+
+        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor : SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(key, jsonString)
+        editor.apply()
+    }
+
+    fun readListFromPreferences(context: Context, key : String): List<com.example.dnd_list_2.model.List> {
+        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val jsonString = sharedPreferences.getString(key, "")
+
+        val gson = Gson()
+        val type = object : TypeToken<ArrayList<com.example.dnd_list_2.model.List>>() {}.type
+        val list : List<com.example.dnd_list_2.model.List> = gson.fromJson(jsonString, type)
+        return list
+    }
+
+    /*val gson = Gson()
+
+    private fun saveSpellList(list: String, sharedPreferences: SharedPreferences) {
+        val toSaveSpellList = gson.toJson(list)
         val editor = sharedPreferences.edit()
         editor.apply{
-            putString("FirstListName", toSaveFirstList)
+            putString("spellList", toSaveSpellList)
         }.apply()
     }
 
-    private fun saveSecondList(list: String, sharedPreferences: SharedPreferences){
-        val toSaveSecondList = gson.toJson(list)
+    private fun saveItemList(list: String, sharedPreferences: SharedPreferences){
+        val toSaveItemList = gson.toJson(list)
         val editors = sharedPreferences.edit()
         editors.apply{
-            putString("SecondListName", toSaveSecondList)
+            putString("itemList", toSaveItemList)
         }.apply()
     }
 
-    fun saveFirst(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<String>){
+    fun saveSpell(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, dndList : MutableList<String>){
         var tempList = ""
-        DndList.forEach() { List ->
-            saveFirstList(List, sharedPreferences)
-            tempList = tempList + String + "-"
+        dndList.forEach() { List ->
+            saveSpellList(List, sharedPreferences)
+            tempList = tempList + List.toString() + "-"
         }
-        saveFirstList(tempList, sharedPreferencesList)
+        saveSpellList(tempList, sharedPreferencesList)
     }
 
-    fun saveSecond(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList2 : MutableList<String>){
+    fun saveItem(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, dndList : MutableList<String>){
         var tempList = ""
-        DndList2.forEach() { List ->
-            saveSecondList(List, sharedPreferences)
-            tempList = tempList + String + "-"
+        dndList.forEach() { List ->
+            saveItemList(List, sharedPreferences)
+            tempList = tempList + List.toString() + "-"
         }
-        saveSecondList(tempList, sharedPreferencesList)
+        saveItemList(tempList, sharedPreferencesList)
     }
 
 
-    fun getDataFirstList(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<List>){
-        if(sharedPreferencesList.contains("FirstListName")) {
-            val savedList = sharedPreferencesList.getString("FirstListName", null)
-            var titleString: kotlin.collections.List<String> = savedList!!.split("-")
-            titleString.forEach() {
-                if (!(it == "")&&sharedPreferences.contains(it)) {
+    fun getDataSpellList(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, dndList : MutableList<List>){
+        if(sharedPreferencesList.contains("spellList")) {
+            val savedList = sharedPreferencesList.getString("spellList", null)
+            var listString: kotlin.collections.List<String> = savedList!!.split("-")
+            listString.forEach() {
+                if (!(it == "") && sharedPreferences.contains(it)) {
                     val savedString = sharedPreferences.getString(it, null)
                     val title = gson.fromJson(savedString, List::class.java)
-                    DndList.add(title)
+                    dndList.add(title)
                 }
             }
         }
     }
 
-    fun getDataSecondList(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, DndList : MutableList<List>){
-        if(sharedPreferencesList.contains("SecondListName")) {
-            val savedList = sharedPreferencesList.getString("SecondListName", null)
-            var titleString: kotlin.collections.List<String> = savedList!!.split("-")
-            titleString.forEach() {
-                if (!(it == "")&&sharedPreferences.contains(it)) {
+    fun getDataItemList(sharedPreferences: SharedPreferences, sharedPreferencesList : SharedPreferences, dndList : MutableList<List>){
+        if(sharedPreferencesList.contains("itemList")) {
+            val savedList = sharedPreferencesList.getString("itemList", null)
+            var listString: kotlin.collections.List<String> = savedList!!.split("-")
+            listString.forEach() {
+                if (!(it == "") && sharedPreferences.contains(it)) {
                     val savedString = sharedPreferences.getString(it, null)
                     val title = gson.fromJson(savedString, List::class.java)
-                    DndList.add(title)
+                    dndList.add(title)
                 }
             }
         }
@@ -80,6 +107,6 @@ class DataStorage {
         editors.apply{
             editors.clear()
         }.apply()
-    }
+    }*/
 
 }

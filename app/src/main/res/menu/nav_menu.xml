@@ -13,5 +13,9 @@
     <item
         android:id="@+id/mnuWebsite"
         android:title="Go to illegal Wikidot" />
+    <item
+        android:id="@+id/bckhome"
+        android:title="Return home" />
+
 
 </menu>

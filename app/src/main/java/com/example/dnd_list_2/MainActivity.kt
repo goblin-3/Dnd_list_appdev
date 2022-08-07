@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.mnuClearLatest -> clearLatestItem()
                 R.id.mnuReset -> resetItems()
                 R.id.mnuWebsite -> linkToWebsite()
+                R.id.bckhome ->  returnHome()
             }
             binding.drawerLayout.closeDrawers()
             true
@@ -83,6 +84,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetItems() {
         listFragment.resetItems()
+    }
+
+    private fun returnHome() {
+        switchTo(fragmentStart)
     }
 
     private fun linkToWebsite() {
