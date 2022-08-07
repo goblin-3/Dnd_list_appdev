@@ -57,12 +57,10 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             adapter.notifyItemInserted(currentList.size - 1)
 
             if (currentFrame == 1) {
-                getContext()?.let {
-                        it1 -> saveListInPreferences(it1, currentList, "spell")
-                }} else {
-                getContext()?.let {
-                        it1 -> saveListInPreferences(it1, currentList, "item")
-                }}
+                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell")
+            }} else {
+                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item")
+            }}
 
             binding.edtList.text.clear()
             binding.edtList.clearFocus()
@@ -73,8 +71,18 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
 
 
     fun clearAllItems() {
-        currentList.clear()
-        adapter.notifyDataSetChanged()
+        if (currentFrame == 1) {
+            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList.clear()
+            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell")
+            adapter.notifyDataSetChanged()
+        }}
+        if (currentFrame == 2) {
+            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList.clear()
+            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item")
+            adapter.notifyDataSetChanged()
+        }}
     }
 
     fun clearLatestItem() {
@@ -124,4 +132,5 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         val list : ArrayList<List> = gson.fromJson(jsonString, type)
         return list
     }
+
 }
