@@ -57,45 +57,16 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             adapter.notifyItemInserted(currentList.size - 1)
 
             if (currentFrame == 1) {
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell")
-            }} else {
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item")
-            }}
+                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+            } else {
+                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+            }
 
             binding.edtList.text.clear()
             binding.edtList.clearFocus()
             main.hideKeyboard(it)
         }
         return binding.root
-    }
-
-
-    fun clearAllItems() {
-        if (currentFrame == 1) {
-            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
-            currentList.clear()
-            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell")
-            adapter.notifyDataSetChanged()
-        }}
-        if (currentFrame == 2) {
-            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
-            currentList.clear()
-            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item")
-            adapter.notifyDataSetChanged()
-        }}
-    }
-
-    fun clearLatestItem() {
-        if (currentList.size >= 1) {
-            currentList.removeAt(currentList.size - 1)
-            adapter.notifyItemRemoved(currentList.size - 1)
-        }
-    }
-
-    fun resetItems() {
-        currentList.clear()
-        currentList.addAll(spellList())
-        adapter.notifyDataSetChanged()
     }
 
 
@@ -112,6 +83,62 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         List("Wand of necroDancy"),
         List("40 ft Rope"),
     )
+
+
+    fun clearAllItems() {
+        // nog rekening houden met een lege lijst dus if check size >= 1
+        if (currentFrame == 1) {
+            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList.clear()
+            adapter.notifyDataSetChanged()
+            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+        }
+        if (currentFrame == 2) {
+            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList.clear()
+            adapter.notifyDataSetChanged()
+            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+        }
+    }
+
+    fun clearLatestItem() {
+        if (currentFrame == 1) {
+            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            if (currentList.size >= 1) {
+                currentList.removeAt(currentList.size - 1)
+                adapter.notifyDataSetChanged()
+                //adapter.notifyItemRemoved(currentList.size - 1)
+                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+            }
+        }
+        if (currentFrame == 2) {
+            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            if (currentList.size >= 1) {
+                currentList.removeAt(currentList.size - 1)
+                adapter.notifyDataSetChanged()
+                //adapter.notifyItemRemoved(currentList.size - 1)
+                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+            }
+        }
+    }
+
+    fun resetItems() {
+        if (currentFrame == 1) {
+            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList.clear()
+            currentList.addAll(spellList())
+            adapter.notifyDataSetChanged()
+            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+        }
+        if (currentFrame == 2) {
+            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList.clear()
+            currentList.addAll(itemList())
+            adapter.notifyDataSetChanged()
+            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+        }
+    }
+
 
     fun saveListInPreferences(context: Context, list: kotlin.collections.List<List>, key: String) {
         val gson = Gson()
