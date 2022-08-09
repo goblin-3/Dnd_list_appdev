@@ -56,6 +56,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         return binding.root
     }
 
+
     private fun spellList() = arrayListOf(
         List("Evocation"),
         List("Conjuration"),
