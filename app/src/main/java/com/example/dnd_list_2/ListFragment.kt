@@ -1,18 +1,14 @@
 package com.example.dnd_list_2
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dnd_list_2.databinding.FragmentList1Binding
+import com.example.dnd_list_2.model.DataStorage
 import com.example.dnd_list_2.model.List
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 
 class ListFragment: Fragment(R.layout.fragment_list1) {
@@ -21,6 +17,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
 
     private lateinit var main: MainActivity
     private lateinit var adapter: ListAdapter
+    val storage = DataStorage()
     var currentList = ArrayList<List>()
 
     override fun onCreateView(
@@ -32,9 +29,9 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         main = activity as MainActivity
 
         if (currentFrame == 1) {
-            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
         } else if (currentFrame == 2) {
-            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
         }
 
         adapter = ListAdapter(currentList)
@@ -47,9 +44,9 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             adapter.notifyItemInserted(currentList.size - 1)
 
             if (currentFrame == 1) {
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
             } else if (currentFrame == 2) {
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
             }
 
             binding.edtList.text.clear()
@@ -77,80 +74,59 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
 
     fun clearAllItems() {
         if (currentFrame == 1) {
-            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.clear()
                 adapter.notifyDataSetChanged()
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
             }
         }
         if (currentFrame == 2) {
-            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.clear()
                 adapter.notifyDataSetChanged()
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
             }
         }
     }
 
     fun clearLatestItem() {
         if (currentFrame == 1) {
-            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.removeAt(currentList.size - 1)
                 //adapter.notifyDataSetChanged()
                 adapter.notifyItemRemoved(currentList.size)
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
             }
         }
         if (currentFrame == 2) {
-            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.removeAt(currentList.size - 1)
                 //adapter.notifyDataSetChanged()
                 adapter.notifyItemRemoved(currentList.size)
-                getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
             }
         }
     }
 
     fun resetItems() {
         if (currentFrame == 1) {
-            currentList = getContext()?.let { readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
             currentList.clear()
             currentList.addAll(spellList())
             adapter.notifyDataSetChanged()
-            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "spell") }
+            getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
         }
         if (currentFrame == 2) {
-            currentList = getContext()?.let { readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
             currentList.clear()
             currentList.addAll(itemList())
             adapter.notifyDataSetChanged()
-            getContext()?.let { it1 -> saveListInPreferences(it1, currentList, "item") }
+            getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
         }
-    }
-
-
-    fun saveListInPreferences(context: Context, list: kotlin.collections.List<List>, key: String) {
-        val gson = Gson()
-        val jsonString = gson.toJson(list)
-
-        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val editor : SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putString(key, jsonString)
-        editor.apply()
-    }
-
-    fun readListFromPreferences(context: Context, key : String): ArrayList<List> {
-        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val jsonString = sharedPreferences.getString(key, emptyList<List>().toString())
-
-        val gson = Gson()
-        val type = object : TypeToken<ArrayList<List>>() {}.type
-        val list : ArrayList<List> = gson.fromJson(jsonString, type)
-        return list
     }
 
 }
