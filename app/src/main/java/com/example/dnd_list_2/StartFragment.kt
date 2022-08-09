@@ -13,7 +13,6 @@ class StartFragment : Fragment(R.layout.fragment_start) {
     lateinit var binding: FragmentStartBinding
     val sensors: MutableList<Sensable> = mutableListOf()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
