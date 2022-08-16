@@ -129,4 +129,5 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
         }
     }
+
 }

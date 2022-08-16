@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "436251922617",
+    "project_id": "dnd-list-57e6b",
+    "storage_bucket": "dnd-list-57e6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436251922617:android:1e04f1a67f237428d5cb68",
+        "android_client_info": {
+          "package_name": "com.example.dnd_list_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436251922617-gl9t8je76t7q4duum6crn5ffemei82jv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz-D50x2ijGRwT_nAn6xMIsEz6ThkS0MI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436251922617-gl9t8je76t7q4duum6crn5ffemei82jv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
