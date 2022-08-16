@@ -5,28 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.dnd_list_2.databinding.InlogVensterBinding
+import com.example.dnd_list_2.databinding.FragmentLoginBinding
 
-class LoginFragment : Fragment(R.layout.inlog_venster) {
 
-    private lateinit var binding:InlogVensterBinding
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
+    private lateinit var binding : FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = InlogVensterBinding.inflate(layoutInflater)
+        binding = FragmentLoginBinding.inflate(layoutInflater)
 
 
 
 
 
         return binding.root
-
     }
-
-
 
 }
