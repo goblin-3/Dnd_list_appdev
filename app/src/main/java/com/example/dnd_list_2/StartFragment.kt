@@ -52,12 +52,11 @@ class StartFragment : Fragment(R.layout.fragment_start) {
     private fun activateSensors(view: View) {
         tryToActivateSensor(TemperatureSensor((activity as MainActivity).sensorManager) {
             if (it.x <= 18.0) {
-                binding.txtWeather.text =
-                    "Too cold for being outside, just the excuse you needed to play Dnd indoors"
+                binding.txtWeather.text = "Too cold for being outside, just the excuse you needed to play Dnd indoors"
             } else {
                 if (it.x >= 26.0) {
-                    binding.txtWeather.text = "just the right heat to play a fireball obsessed wizard"
-                } else{
+                    binding.txtWeather.text = "Just the right heat to play a fireball obsessed wizard"
+                } else {
                 binding.txtWeather.text = "Just the right temperature to play Dnd outdoors"}
             }
             binding.txtCurrentTemp.text = "${it.x} °C"

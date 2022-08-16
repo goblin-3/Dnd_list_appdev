@@ -17,7 +17,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
 
     private lateinit var main: MainActivity
     private lateinit var adapter: ListAdapter
-    val storage = DataStorage()
+    private val storage = DataStorage()
     var currentList = ArrayList<List>()
 
     override fun onCreateView(
@@ -42,6 +42,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             val newListTitle = binding.edtList.text.toString()
             currentList.add(List(newListTitle))
             adapter.notifyItemInserted(currentList.size - 1)
+            //adapter.notifyDataSetChanged()
 
             if (currentFrame == 1) {
                 getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
@@ -97,7 +98,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             if (currentList.size >= 1) {
                 currentList.removeAt(currentList.size - 1)
                 //adapter.notifyDataSetChanged()
-                adapter.notifyItemRemoved(currentList.size)
+                adapter.notifyItemRemoved(currentList.size - 1)
                 getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
             }
         }
@@ -128,5 +129,4 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
             getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
         }
     }
-
 }

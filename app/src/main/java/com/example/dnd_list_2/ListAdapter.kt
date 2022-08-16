@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+
 class ListAdapter (val items:List<com.example.dnd_list_2.model.List>) : RecyclerView.Adapter<ListAdapter.ListViewHolder>(){
 
     inner class ListViewHolder(currentItemView: View): RecyclerView.ViewHolder(currentItemView)
@@ -23,4 +24,5 @@ class ListAdapter (val items:List<com.example.dnd_list_2.model.List>) : Recycler
     }
 
     override fun getItemCount(): Int = items.size
+
 }
