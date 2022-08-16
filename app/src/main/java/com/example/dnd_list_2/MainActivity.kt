@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import com.example.dnd_list_2.databinding.ActivityMainBinding
 
+
 var currentFrame = 0
 
 class MainActivity : AppCompatActivity() {
