@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menuBarToggle: ActionBarDrawerToggle
     private var listFragment = ListFragment()
     val fragmentStart = StartFragment()
+    val loginFragment = LoginFragment()
 
     val sensorManager: SensorManager
         get() = getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setupMenuDrawer()
 
         setContentView(binding.root)
-        switchTo(fragmentStart)
+        switchTo(loginFragment)
     }
 
 
