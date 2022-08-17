@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var menuBarToggle: ActionBarDrawerToggle
     private var listFragment = ListFragment()
-    val emailPasswordActivity = EmailPasswordActivity()
     val loginFragment = LoginFragment()
 
     val sensorManager: SensorManager
@@ -89,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logout() {
-        emailPasswordActivity.logoutFirebase()
+        loginFragment.logoutFirebase()
         switchTo(loginFragment)
     }
 

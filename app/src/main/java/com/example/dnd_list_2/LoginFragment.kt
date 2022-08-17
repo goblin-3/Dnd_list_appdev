@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.dnd_list_2.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -70,6 +72,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun isEmailValid(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    fun logoutFirebase() {
+        Firebase.auth.signOut()
     }
 
 }
