@@ -18,6 +18,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
     private lateinit var main: MainActivity
     private lateinit var adapter: ListAdapter
     private val storage = DataStorage()
+    private val user =LoginFragment()
     var currentList = ArrayList<List>()
 
     override fun onCreateView(
@@ -29,9 +30,9 @@ class ListFragment: Fragment(R.layout.fragment_list) {
         main = activity as MainActivity
 
         if (currentFrame == 1) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell" + "${sMail}") } as ArrayList<List>
         } else if (currentFrame == 2) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item"+ "${sMail}") } as ArrayList<List>
         }
 
         adapter = ListAdapter(currentList)
@@ -45,9 +46,9 @@ class ListFragment: Fragment(R.layout.fragment_list) {
             //adapter.notifyDataSetChanged()
 
             if (currentFrame == 1) {
-                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell"+ "${sMail}") }
             } else if (currentFrame == 2) {
-                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item"+ "${sMail}") }
             }
 
             binding.edtList.text.clear()
@@ -75,58 +76,58 @@ class ListFragment: Fragment(R.layout.fragment_list) {
 
     fun clearAllItems() {
         if (currentFrame == 1) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell"+ "${sMail}") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.clear()
                 adapter.notifyDataSetChanged()
-                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell"+ "${sMail}") }
             }
         }
         if (currentFrame == 2) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item"+ "${sMail}") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.clear()
                 adapter.notifyDataSetChanged()
-                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item"+ "${sMail}") }
             }
         }
     }
 
     fun clearLatestItem() {
         if (currentFrame == 1) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell"+ "${sMail}") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.removeAt(currentList.size - 1)
                 //adapter.notifyDataSetChanged()
                 adapter.notifyItemRemoved(currentList.size - 1)
-                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell"+ "${sMail}") }
             }
         }
         if (currentFrame == 2) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item"+ "${sMail}") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.removeAt(currentList.size - 1)
                 //adapter.notifyDataSetChanged()
                 adapter.notifyItemRemoved(currentList.size)
-                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
+                getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item"+ "${sMail}") }
             }
         }
     }
 
     fun resetItems() {
         if (currentFrame == 1) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "spell"+ "${sMail}") } as ArrayList<List>
             currentList.clear()
             currentList.addAll(spellList())
             adapter.notifyDataSetChanged()
-            getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell") }
+            getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell"+ "${sMail}") }
         }
         if (currentFrame == 2) {
-            currentList = getContext()?.let { storage.readListFromPreferences(it, "item") } as ArrayList<List>
+            currentList = getContext()?.let { storage.readListFromPreferences(it, "item"+ "${sMail}") } as ArrayList<List>
             currentList.clear()
             currentList.addAll(itemList())
             adapter.notifyDataSetChanged()
-            getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item") }
+            getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item"+ "${sMail}") }
         }
     }
 

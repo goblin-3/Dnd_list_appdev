@@ -12,11 +12,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+var sMail :String = ""
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var binding : FragmentLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var main: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,14 +26,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(layoutInflater)
-
+        main = activity as MainActivity
         val mail = binding.txtTheMail
         val password = binding.txtThePassword
 
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.btnLogin.setOnClickListener {
-            val sMail = mail.text.toString()
+             sMail = mail.text.toString()
             val sPassword = password.text.toString()
 
             if (!isEmailValid(sMail)){
@@ -65,6 +67,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     }
                 }
             }
+            main.hideKeyboard(it)
         }
 
         return binding.root
@@ -79,4 +82,3 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
 }
-
