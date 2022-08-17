@@ -90,5 +90,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.311" />
 
+    <TextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="198dp"
+        android:layout_height="23dp"
+        android:text="I'm not registered, sign me up"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
