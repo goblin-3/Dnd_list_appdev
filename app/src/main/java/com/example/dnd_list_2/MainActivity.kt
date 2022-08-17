@@ -95,10 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun linkToWebsite() {
         val url = "http://dnd5e.wikidot.com"
         val browse = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-
-        // if (browse.resolveActivity(requireContext().packageManager) != null) { //dit moet er eigenlijk bij, maar werkt niet
         startActivity(browse)
-        //}
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

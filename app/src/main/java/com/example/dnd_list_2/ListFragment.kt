@@ -43,7 +43,6 @@ class ListFragment: Fragment(R.layout.fragment_list) {
             val newListTitle = binding.edtList.text.toString()
             currentList.add(List(newListTitle))
             adapter.notifyItemInserted(currentList.size - 1)
-            //adapter.notifyDataSetChanged()
 
             if (currentFrame == 1) {
                 getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell"+ "${sMail}") }
@@ -98,7 +97,6 @@ class ListFragment: Fragment(R.layout.fragment_list) {
             currentList = getContext()?.let { storage.readListFromPreferences(it, "spell"+ "${sMail}") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.removeAt(currentList.size - 1)
-                //adapter.notifyDataSetChanged()
                 adapter.notifyItemRemoved(currentList.size - 1)
                 getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "spell"+ "${sMail}") }
             }
@@ -107,7 +105,6 @@ class ListFragment: Fragment(R.layout.fragment_list) {
             currentList = getContext()?.let { storage.readListFromPreferences(it, "item"+ "${sMail}") } as ArrayList<List>
             if (currentList.size >= 1) {
                 currentList.removeAt(currentList.size - 1)
-                //adapter.notifyDataSetChanged()
                 adapter.notifyItemRemoved(currentList.size)
                 getContext()?.let { it1 -> storage.saveListInPreferences(it1, currentList, "item"+ "${sMail}") }
             }
