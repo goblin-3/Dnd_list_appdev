@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var menuBarToggle: ActionBarDrawerToggle
     private var listFragment = ListFragment()
-    val fragmentStart = StartFragment()
+    val emailPasswordActivity = EmailPasswordActivity()
     val loginFragment = LoginFragment()
 
     val sensorManager: SensorManager
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.mnuClearLatest -> clearLatestItem()
                 R.id.mnuReset -> resetItems()
                 R.id.mnuWebsite -> linkToWebsite()
-                R.id.bckhome ->  returnHome()
+                R.id.mnuLogOut ->  logout()
             }
             binding.drawerLayout.closeDrawers()
             true
@@ -88,8 +88,9 @@ class MainActivity : AppCompatActivity() {
         listFragment.resetItems()
     }
 
-    private fun returnHome() {
-        switchTo(fragmentStart)
+    private fun logout() {
+        emailPasswordActivity.logoutFirebase()
+        switchTo(loginFragment)
     }
 
     private fun linkToWebsite() {

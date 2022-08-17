@@ -60,6 +60,10 @@ class EmailPasswordActivity : Activity() {
             }
     }
 
+    fun logoutFirebase() {
+        Firebase.auth.signOut()
+    }
+
     private fun updateUI(user: FirebaseUser?) {
 
     }

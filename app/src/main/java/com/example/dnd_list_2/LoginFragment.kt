@@ -1,6 +1,7 @@
 package com.example.dnd_list_2
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,12 @@ import com.example.dnd_list_2.databinding.FragmentLoginBinding
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var binding : FragmentLoginBinding
-    //private val main: MainActivity = MainActivity()
     private val emailPasswordActivity = EmailPasswordActivity()
 
     private lateinit var mail : EditText
+    lateinit var sMail : String
     private lateinit var password : EditText
+    lateinit var sPassword : String
     private lateinit var login : Button
 
     override fun onCreateView(
@@ -33,16 +35,28 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         login = binding.btnLogin
 
         login.setOnClickListener {
-            //emailPasswordActivity.createAccount(mail.toString(), password.toString())
-            //emailPasswordActivity.signIn(mail.toString(), password.toString())
+            sMail = mail.text.toString()
+            sPassword = password.text.toString()
 
-            //main.hideKeyboard(it)
+            if (!isEmailValid(sMail)){
+                binding.txtTheMail.setError("Enter correct mail")
+            } else if (sPassword.length < 7) {
+                binding.txtThePassword.setError("Password must be 7 characters")
+            } else {
+                //emailPasswordActivity.createAccount(mail.toString(), password.toString())
+                //emailPasswordActivity.signIn(mail.toString(), password.toString())
 
-            val startFragment = StartFragment()
-            (activity as MainActivity).switchTo(startFragment)
+                val startFragment = StartFragment()
+                (activity as MainActivity).switchTo(startFragment)
+            }
         }
 
         return binding.root
     }
 
+    private fun isEmailValid(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
 }
+

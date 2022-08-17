@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dnd_list_2.databinding.FragmentList1Binding
+import com.example.dnd_list_2.databinding.FragmentListBinding
 import com.example.dnd_list_2.model.DataStorage
 import com.example.dnd_list_2.model.List
 
 
-class ListFragment: Fragment(R.layout.fragment_list1) {
+class ListFragment: Fragment(R.layout.fragment_list) {
 
-    private lateinit var binding: FragmentList1Binding
+    private lateinit var binding: FragmentListBinding
 
     private lateinit var main: MainActivity
     private lateinit var adapter: ListAdapter
@@ -25,7 +25,7 @@ class ListFragment: Fragment(R.layout.fragment_list1) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentList1Binding.inflate(layoutInflater)
+        binding = FragmentListBinding.inflate(layoutInflater)
         main = activity as MainActivity
 
         if (currentFrame == 1) {

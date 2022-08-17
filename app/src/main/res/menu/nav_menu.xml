@@ -14,8 +14,8 @@
         android:id="@+id/mnuWebsite"
         android:title="Go to illegal Wikidot" />
     <item
-        android:id="@+id/bckhome"
-        android:title="Return home" />
+        android:id="@+id/mnuLogOut"
+        android:title="Logout" />
 
 
 </menu>
